@@ -1,5 +1,5 @@
 ﻿using herramientas;
-
+//using ProyectoInicial.Modelos;
 using universidad.postgrado;
 // Usando alias en using
 using EstPregrado = universidad.pregrado.Estudiante; 
@@ -110,6 +110,21 @@ namespace miNamespace
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
+            Console.WriteLine("TRABAJANDO CON OBJETOS");
+            ProyectoInicial.Modelos.Persona per02 = new ProyectoInicial.Modelos.Persona();
+            per02.nombre = "Pepe";
+            per02.apellido = "Perales";
+            per02.edad = 27;
+            per02.mostrarInformacion();
+            per02.edad = -99;
+            per02.mostrarInformacion();
+            per02.trabajar();
+
+            ProyectoInicial.Modelos.Estudiante est01 = new ProyectoInicial.Modelos.Estudiante();
+            est01.nombre = "Maria";
+            est01.apellido = "Gonzalez";
+            est01.edad = 22;
+            est01.matricula = "12345";
         }
         public static void sumar(int a, int b)
         {
