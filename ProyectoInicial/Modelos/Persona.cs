@@ -2,13 +2,30 @@
 {
     public class Persona
     {
-        private string _nombre;
-        private string _apellido;
-        private int _edad;
+        protected string _nombre;
+        protected string _apellido;
+        protected int _edad;
         public Persona(string nom,string ape,int ed) { 
             nombre = nom;
             apellido = ape;
             edad = ed;
+        }
+        
+        public Persona(int edad, string nombre, string apellido) { 
+            this.edad = edad;
+            this.nombre = nombre;
+            this.apellido = apellido;
+        }
+        public Persona()
+        {
+            nombre = "NA";
+            apellido = "NA";
+            edad = 18;
+        }
+        public Persona(int edad) {
+            nombre = "NA";
+            apellido = "NA";
+            this.edad = edad;
         }
         public string nombre
         {
@@ -43,8 +60,43 @@
             return nombre + " " + apellido;
         }
     }
-    public class Estudiante : Persona {
+    public class Estudiante : Persona, ICiudadano {
         public string matricula;
+        public Estudiante(string nombre, string apellido, int edad, string mat) : base(nombre, apellido, edad) { 
+            matricula = mat;
+        }
+        public Estudiante() : base(){
+            matricula = "100";
+            _nombre = "NA";
+            _apellido = "NA";
+            _edad = 18;
+        }
+        public void trabajar()
+        {
+            Console.WriteLine("El estudiante está estudiando");
+        }
+
+        public void votar()
+        {
+            Console.WriteLine("El estudiante está votando");
+        }
+
+        public void pagarImpuestos()
+        {
+            Console.WriteLine("El estudiante está pagando impuestos");
+        }
+    }
+    public sealed class EstudianteUniversitario : Estudiante
+    {
+        public string carrera;
+        public EstudianteUniversitario(string nombre, string apellido, int edad, string mat, string car) : base(nombre, apellido, edad, mat)
+        {
+            carrera = car;
+        }
+    }
+    public interface ICiudadano { 
+        void votar();
+        void pagarImpuestos();
     }
     namespace sub.modelos
     {
