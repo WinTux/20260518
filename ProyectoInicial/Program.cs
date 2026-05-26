@@ -1,4 +1,6 @@
 ﻿using herramientas;
+using ProyectoInicial.Modelos;
+
 //using ProyectoInicial.Modelos;
 using universidad.postgrado;
 // Usando alias en using
@@ -93,7 +95,7 @@ namespace miNamespace
             ProyectoInicial.Modelos.Persona p01 = new ProyectoInicial.Modelos.Persona();
             Conversor cv = new Conversor();
             EstPregrado estPregrado = new EstPregrado();
-            Estudiante estPostgrado = new Estudiante();
+            ProyectoInicial.Modelos.Estudiante estPostgrado = new ProyectoInicial.Modelos.Estudiante();
             #endregion
             try
             {
@@ -125,6 +127,47 @@ namespace miNamespace
             est01.apellido = "Gonzalez";
             est01.edad = 22;
             est01.matricula = "12345";
+
+            // Polimorfismo
+            Profesor prof01 = new Profesor("Matemáticas");
+            prof01.votar();
+            est01.votar();
+
+            // Estructuras estáticas
+            // Arreglo (array)
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Arreglos - unidimensionales");
+            int[] numeros = new int[5];
+            numeros[0] = 10; numeros[1] = 20;
+            numeros[2] = 30; numeros[3] = 40; numeros[4] = 50;
+            foreach (int num in numeros)
+            {
+                Console.WriteLine(num);
+            }
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
+            Console.WriteLine("Arreglos - bidimensionales");
+            int[,] matriz = new int[2, 3] { { 1, 2, 3 }, { 4, 5, 6 } };
+            Console.WriteLine("elemento 1,2: "+matriz[1,2]);
+
+            Console.WriteLine("Arreglos - tridimensionales");
+            int[,,] cubo = new int[2, 2, 2] { { { 1, 2 }, { 3, 4 } }, { { 5, 6 }, { 7, 8 } } };
+
+            // Continuando con el polimorfismo
+            Profesor[] profesores = new Profesor[2];
+            profesores[0] = new Profesor("Física");
+            profesores[1] = prof01;
+            ProyectoInicial.Modelos.Estudiante[] estudiantes = new ProyectoInicial.Modelos.Estudiante[2];
+            estudiantes[0] = est01;
+            estudiantes[1] = new ProyectoInicial.Modelos.Estudiante();
+
+            ICiudadano[] ciudadanos = new ICiudadano[4];
+            ciudadanos[0] = prof01;
+            ciudadanos[1] = est01;
+            ICiudadano ciudadanoDelMundo = new Profesor("Química");
+            Profesor profAux = (Profesor)ciudadanoDelMundo;// casteo o conversión explícita
         }
         public static void sumar(int a, int b)
         {

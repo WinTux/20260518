@@ -86,6 +86,18 @@
             Console.WriteLine("El estudiante está pagando impuestos");
         }
     }
+    public class Profesor : ICiudadano{
+        public string materia;
+        public Profesor(string mat)
+        {
+            materia = mat;
+        }
+        public void votar() { 
+        }
+        public void pagarImpuestos()
+        {
+        }
+    }
     public sealed class EstudianteUniversitario : Estudiante
     {
         public string carrera;
